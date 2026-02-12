@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إلى ستيلا ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+    body {
+        margin: 0; padding: 0; height: 100vh;
+        display: flex; justify-content: center; align-items: center;
+        background: radial-gradient(circle, #2d0a1a 0%, #1a0b12 100%);
+        overflow: hidden; color: white; font-family: 'Amiri', serif;
+        touch-action: none; position: relative;
+    }
+
+    /* قلوب الخلفية - تم تكبيرها وتكثيفها */
+    .bg-heart {
+        position: absolute; bottom: -50px;
+        color: rgba(255, 255, 255, 0.12); 
+        font-size: 30px; /* حجم أكبر شوي */
+        pointer-events: none;
+        animation: floatUp 9s linear infinite;
+        z-index: 1;
+    }
+    @keyframes floatUp {
+        0% { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 0; }
+        20% { opacity: 0.5; }
+        80% { opacity: 0.5; }
+        100% { transform: translateY(-110vh) rotate(360deg) scale(1.2); opacity: 0; }
+    }
+
+    /* شاشة البصمة */
+    #welcomeScreen {
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: #1a0b12; z-index: 9999; display: flex; flex-direction: column;
+        justify-content: center; align-items: center; transition: 1s ease-in-out;
+    }
+    #fingerprintContainer {
+        position: relative; width: 120px; height: 150px; cursor: pointer;
+        display: flex; justify-content: center; align-items: center;
+        border: 2px solid rgba(255, 255, 255, 0.1); border-radius: 20px;
+    }
+    #fp-svg { width: 90px; fill: #ff4e9b; filter: drop-shadow(0 0 10px #ff4e9b); transition: 0.5s; }
+    
+    .scanner-line {
+        position: absolute; width: 100%; height: 3px; background: #00f2ff;
+        box-shadow: 0 0 15px #00f2ff; animation: scanMove 2s linear infinite;
+    }
+    @keyframes scanMove { 0%, 100% { top: 10%; } 50% { top: 90%; } }
+
+    #status-text { margin-top: 30px; color: rgba(255, 255, 255, 0.3); font-size: 18px; text-align: center; }
+
+    /* القصيدة والرسائل */
+    .overlay { position: relative; z-index: 10; text-align: center; width: 90%; }
+    .poem { 
+        font-size: 32px; line-height: 2.3; 
+        display: none; opacity: 0; transition: 2s; 
+    }
+
+    .question-area { display: none; flex-direction: column; align-items: center; opacity: 0; transition: 1s; }
+    
+    button { 
+        padding: 12px 35px; font-size: 22px; font-family: 'Amiri'; border: none; 
+        border-radius: 50px; cursor: pointer; margin: 10px; 
+    }
+    #yesBtn { background: white; color: black; transition: 0.3s; }
+    
+    /* زر لا - انتقالات سلسة جداً */
+    #noBtn { 
+        background: #ff4e9b; color: white; position: relative;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        white-space: nowrap;
+    }
+
+    .message { font-size: 26px; white-space: pre-line; margin-top: 20px; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+    <div id="bgHearts"></div>
+
+    <div id="welcomeScreen">
+        <div id="fingerprintContainer">
+            <div class="scanner-line"></div>
+            <svg id="fp-svg" viewBox="0 0 24 24"><path d="M17.81 4.47c-.08 0-.16-.02-.23-.06C15.66 3.42 14 3 12.01 3c-1.98 0-3.86.47-5.57 1.41-.24.13-.54.04-.67-.2-.13-.24-.04-.55.2-.68C7.82 2.52 9.86 2 12.01 2c2.13 0 3.99.47 5.57 1.39.24.14.32.45.19.69-.1.17-.28.27-.47.27-.14 0-.27-.04-.39-.11zM3.51 9.77c-.14 0-.28-.06-.38-.17-.19-.21-.17-.53.04-.72C5.02 7.22 7.27 6.13 9.61 5.61c.27-.06.54.11.6.38.06.27-.11.54-.38.6-2.09.46-4.1 1.44-5.81 2.98-.14.12-.31.18-.51.18zm17.02 0c-.2 0-.37-.06-.51-.18-1.71-1.54-3.72-2.52-5.81-2.98-.27-.06-.44-.33-.38-.6.06-.27.33-.44.6-.38 2.34.52 4.59 1.61 6.44 3.29.21.19.23.51.04.72-.1.11-.24.17-.38.17zM12.01 7c-1.28 0-2.55.22-3.77.67-.25.09-.53-.04-.62-.29-.09-.25.04-.53.29-.62 1.37-.51 2.82-.76 4.1-.76 1.28 0 2.73.25 4.1.76.25.09.38.37.29.62-.09.25-.37.38-.62.29-1.22-.45-2.49-.67-3.77-.67zm0 14c-4.41 0-8-3.59-8-8 0-.28.22-.5.5-.5s.5.22.5.5c0 3.86 3.14 7 7 7s7-3.14 7-7c0-2.5-.54-4.82-1.51-6.91-.12-.25-.01-.55.24-.67.25-.12.55-.01.67.24C19.45 8.04 20.01 10.45 20.01 13c0 4.41-3.59 8-8 8zm-5.01-8c0-2.76 2.24-5 5-5s5 2.24 5 5c0 .28-.22.5-.5.5s-.5-.22-.5-.5c0-2.21-1.79-4-4-4s-4 1.79-4 4c0 .28-.22.5-.5.5s-.5-.22-.5-.5z"/><path d="M12.01 15c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm0-3c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"/></svg>
+        </div>
+        <p id="status-text">بصمة ستيلا مطلوبة</p>
+    </div>
+
+    <audio id="mySong" loop><source src="https://files.catbox.moe/n5ghkh.mp3" type="audio/mpeg"></audio>
+
+    <div class="overlay">
+        <div class="poem" id="poem">
+            وَلَعَلّنَا مَن بَعدِ بُعدٍ نَلتَقِي<br>
+            وَيَطيَبُ قَلبي عِندَمَا أَلْقَاكِ<br>
+            فَمَا رأَيتُ أَعَزّمَنكِ فيِ قَلبي<br>
+            وَمَا رَغبتُ فيِ أَحَدٍ سِواَكِ
+        </div>
+
+        <div class="question-area" id="questionArea">
+            <h2 style="font-size: 38px;">ستيلا تحبيني؟</h2>
+            <div style="display: flex; justify-content: center; gap: 15px; margin-top: 20px;">
+                <button id="yesBtn">أكييييد</button>
+                <button id="noBtn">لا</button>
+            </div>
+        </div>
+        <div id="msg" class="message"></div>
+    </div>
+
+<script>
+    // نظام القلوب (تكثيف التوليد)
+    function createBgHeart() {
+        const heart = document.createElement('div');
+        heart.className = 'bg-heart';
+        heart.innerHTML = '❤';
+        heart.style.left = Math.random() * 100 + 'vw';
+        // سرعات متفاوتة لزيادة الواقعية
+        heart.style.animationDuration = (Math.random() * 5 + 6) + 's';
+        document.getElementById('bgHearts').appendChild(heart);
+        setTimeout(() => heart.remove(), 9000);
+    }
+    // توليد قلب كل 200 ملي ثانية (كثافة أعلى)
+    setInterval(createBgHeart, 300);
+
+    const fp = document.getElementById('fingerprintContainer');
+    const st = document.getElementById('status-text');
+    const svg = document.getElementById('fp-svg');
+    const audio = document.getElementById('mySong');
+
+    fp.addEventListener('click', () => {
+        svg.style.fill = "#4eff9b";
+        st.innerText = "جاري مطابقة البصمة...";
+        setTimeout(() => { st.innerText = "تم التحقق من الهوية.."; }, 1500);
+        setTimeout(() => { 
+            st.innerText = "أهلاً ستيلا، كنت بانتظار..";
+            st.style.color = "white";
+        }, 3000);
+
+        setTimeout(() => {
+            audio.play();
+            document.getElementById('welcomeScreen').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('welcomeScreen').style.display = 'none';
+                startFlow();
+            }, 1000);
+        }, 4500);
+    });
+
+    function startFlow() {
+        const poem = document.getElementById('poem');
+        poem.style.display = 'block';
+        setTimeout(() => poem.style.opacity = '1', 100);
+        setTimeout(() => {
+            poem.style.opacity = '0';
+            setTimeout(() => {
+                poem.style.display = 'none';
+                const qArea = document.getElementById('questionArea');
+                qArea.style.display = 'flex';
+                setTimeout(() => qArea.style.opacity = '1', 50);
+            }, 1500);
+        }, 11000);
+    }
+
+    const noBtn = document.getElementById('noBtn');
+    const words = ["تستهبلي؟", "ما تقدري", "حاولي ثاني", "أنا أحبك!", "بضغط نعم عنك"];
+    const moveBtn = (e) => {
+        if (e) e.preventDefault();
+        // ضمان عدم خروج الزر عن الشاشة مع الحفاظ على مركزية الحركة
+        const maxX = window.innerWidth - 120;
+        const maxY = window.innerHeight - 80;
+        const randomX = Math.random() * maxX;
+        const randomY = Math.random() * maxY;
+        
+        noBtn.style.position = 'fixed';
+        noBtn.style.left = '0'; noBtn.style.top = '0';
+        noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+        noBtn.innerText = words[Math.floor(Math.random() * words.length)];
+    };
+    noBtn.addEventListener('mouseover', moveBtn);
+    noBtn.addEventListener('touchstart', moveBtn);
+
+    document.getElementById('yesBtn').addEventListener('click', () => {
+        document.getElementById('questionArea').style.display = 'none';
+        const finalMsg = "وأنا أحبك أكثر يا غبيه.. أحبكككك \n\nيمكن ما أعرف أعبر بالكلام دايم، بس حبيت أصمم لكِ هالمكان الصغير عشان أقولك إنك أغلى شي صار لي..\n\nشكراً لأنك ستيلا، وشكراً لأنك في حياتي ✨";
+        let i = 0;
+        function type() {
+            if (i < finalMsg.length) {
+                document.getElementById('msg').innerHTML += finalMsg.charAt(i) === '\n' ? '<br>' : finalMsg.charAt(i);
+                i++; setTimeout(type, 80);
+            }
+        }
+        type();
+    });
+</script>
+</body>
+</html>
